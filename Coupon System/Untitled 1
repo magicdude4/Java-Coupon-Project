@@ -1,0 +1,6 @@
+TO DO:
+* Add Dev ClientType with special accesses 
+* Add loggers for each ClientType and use printstacktrace in the Dev logger
+* any methods that returns a collection needs while(resultset.next()) not if
+* customercoupons and companycouponsgetters return multiple id's from the combined tables
+* see what changing checkcouponavailability changed
