@@ -9,6 +9,6 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
 	Company findById(long id);
 	
-	@Query(value = "select * from Coupon_System.Companies where Name = 1", nativeQuery = true)
+	//@Query(value = "select * from coupon_system.companies where name = 1", nativeQuery = true)
 	Company findByName(String name);
 }

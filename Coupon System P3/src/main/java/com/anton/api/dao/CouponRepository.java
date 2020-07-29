@@ -11,7 +11,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 
 	Coupon findById(long id);
 
-	@Query(value = "select * from soupon_system.Coupons where title = 1", nativeQuery = true)
+	@Query(value = "select * from coupon_system.coupons where title = 1", nativeQuery = true)
 	Coupon findByTitle(String title);
 	
 	List<Coupon> findAll();

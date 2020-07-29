@@ -37,24 +37,24 @@ public class LoginController {
 		JSONObject jsonAnswer = new JSONObject();
 		jsonAnswer.put("isLoggedIn", false);
 		jsonAnswer.put("type", "");
-		String name = credentials.get("username").toString();
+		String name = credentials.get("name").toString();
 		String password = credentials.get("password").toString();
 		String type = credentials.get("type").toString();
 		
 		switch(type) {
 			case "COMPANY":
 				if(name.equals(getCompany(name).getName())&&password.equals(getCompany(password).getPassword())) {
-					jsonAnswer.put("isLoggedIn", true);
+					jsonAnswer.put("isLoggedIn", "true");
 					jsonAnswer.put("type", "COMPANY");
 				}break;
 			case "CUSTOMER":	
 				if(name.equals(getCustomer(name).getName())&&password.equals(getCustomer(password).getPassword())) {
-					jsonAnswer.put("isLoggedIn", true);
+					jsonAnswer.put("isLoggedIn", "true");
 					jsonAnswer.put("type", "CUSTOMER");
 				}break;
 			case "ADMIN":	
 				if(name.equals("admin")&&password.equals("administrator")) {
-					jsonAnswer.put("isLoggedIn", true);
+					jsonAnswer.put("isLoggedIn", "true");
 					jsonAnswer.put("type", "ADMIN");
 				}break;
 		}return jsonAnswer;
