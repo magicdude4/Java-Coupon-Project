@@ -2,6 +2,7 @@ package com.anton.api.controllers;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import com.anton.api.models.Customer;
 @Controller("/login")
 public class LoginController {
 	
-	//private JSONObject credentials;
+	private JSONObject credentials;
 	
 	@Autowired
 	private CompanyRepository companyRepository;
@@ -37,9 +38,15 @@ public class LoginController {
 		JSONObject jsonAnswer = new JSONObject();
 		jsonAnswer.put("isLoggedIn", false);
 		jsonAnswer.put("type", "");
-		String name = credentials.get("name").toString();
+		String name = credentials.getString("name");
 		String password = credentials.get("password").toString();
 		String type = credentials.get("type").toString();
+		
+		System.out.println("-----------------------");
+		System.out.println(name);
+		System.out.println(password);
+		System.out.println(type);
+		System.out.println("-----------------------");
 		
 		switch(type) {
 			case "COMPANY":
