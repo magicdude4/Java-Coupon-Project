@@ -16,8 +16,6 @@ import com.anton.api.models.Customer;
 @Controller("/login")
 public class LoginController {
 	
-	private JSONObject credentials;
-	
 	@Autowired
 	private CompanyRepository companyRepository;
 	@Autowired
@@ -35,12 +33,14 @@ public class LoginController {
 	@ResponseBody
 	public JSONObject login(JSONObject credentials) throws JSONException {
 		
+		System.out.println(credentials.getString("name"));
+		
 		JSONObject jsonAnswer = new JSONObject();
 		jsonAnswer.put("isLoggedIn", false);
 		jsonAnswer.put("type", "");
 		String name = credentials.getString("name");
-		String password = credentials.get("password").toString();
-		String type = credentials.get("type").toString();
+		String password = credentials.getString("password");
+		String type = credentials.getString("type");
 		
 		System.out.println("-----------------------");
 		System.out.println(name);
@@ -50,12 +50,12 @@ public class LoginController {
 		
 		switch(type) {
 			case "COMPANY":
-				if(name.equals(getCompany(name).getName())&&password.equals(getCompany(password).getPassword())) {
+				if(name.equals(getCompany(name).getName())&&password.equals(getCompany(name).getPassword())) {
 					jsonAnswer.put("isLoggedIn", "true");
 					jsonAnswer.put("type", "COMPANY");
 				}break;
 			case "CUSTOMER":	
-				if(name.equals(getCustomer(name).getName())&&password.equals(getCustomer(password).getPassword())) {
+				if(name.equals(getCustomer(name).getName())&&password.equals(getCustomer(name).getPassword())) {
 					jsonAnswer.put("isLoggedIn", "true");
 					jsonAnswer.put("type", "CUSTOMER");
 				}break;

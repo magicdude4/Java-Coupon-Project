@@ -21,11 +21,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource datasource;
 	
-	/*@Autowired
+	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
-				.dataSource(datasource);
-		}*/
+				.dataSource(datasource).usersByUsernameQuery("select name,password "
+				        + "from customers "
+				        + "where name = ?")
+				.and().jdbcAuthentication().dataSource(datasource)
+				.usersByUsernameQuery("select email,name,password "
+				        + "from companies "
+				        + "where name = ?");
+		}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
