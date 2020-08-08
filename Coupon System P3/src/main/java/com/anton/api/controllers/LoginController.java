@@ -2,10 +2,10 @@ package com.anton.api.controllers;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anton.api.dao.CompanyRepository;
@@ -32,8 +32,8 @@ public class LoginController {
 	@GetMapping(path = "/login", consumes = { "application/json" }, produces = { "application/json" })
 	@ResponseBody
 	public JSONObject login(JSONObject credentials) throws JSONException {
-		
-		System.out.println(credentials.getString("name"));
+		System.out.println(credentials.isEmpty() +"-----------------------");
+		System.out.println("------@@@---------//---------@@@-----");
 		
 		JSONObject jsonAnswer = new JSONObject();
 		jsonAnswer.put("isLoggedIn", false);
@@ -51,17 +51,17 @@ public class LoginController {
 		switch(type) {
 			case "COMPANY":
 				if(name.equals(getCompany(name).getName())&&password.equals(getCompany(name).getPassword())) {
-					jsonAnswer.put("isLoggedIn", "true");
+					jsonAnswer.put("isLoggedIn", true);
 					jsonAnswer.put("type", "COMPANY");
 				}break;
 			case "CUSTOMER":	
 				if(name.equals(getCustomer(name).getName())&&password.equals(getCustomer(name).getPassword())) {
-					jsonAnswer.put("isLoggedIn", "true");
+					jsonAnswer.put("isLoggedIn", true);
 					jsonAnswer.put("type", "CUSTOMER");
 				}break;
 			case "ADMIN":	
 				if(name.equals("admin")&&password.equals("administrator")) {
-					jsonAnswer.put("isLoggedIn", "true");
+					jsonAnswer.put("isLoggedIn", true);
 					jsonAnswer.put("type", "ADMIN");
 				}break;
 		}return jsonAnswer;
